@@ -4,8 +4,11 @@ networks:
   net:
 
 
+
+
+
 volumes:
-    prometheus: {}
+#    prometheus: {}
     grafana: {}
 
 
@@ -13,11 +16,11 @@ volumes:
 services:
 
   prometheus:
-        image: prom/prometheus:master
+        image: prom/prometheus:v2.21.0
         networks:
           - net
         volumes:
-            - prometheus:/etc/prometheus/
+            - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
         command:
             - --config.file=/etc/prometheus/prometheus.yml
         ports:
